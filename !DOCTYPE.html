@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariel Alonso Gongora Tziu - Autobiografía</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: #000000;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Fondo animado con gradiente */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.15) 0%, 
+                rgba(118, 75, 162, 0.15) 25%,
+                rgba(59, 130, 246, 0.15) 50%,
+                rgba(30, 58, 138, 0.15) 75%,
+                rgba(102, 126, 234, 0.15) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Partículas flotantes mejoradas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            filter: blur(2px);
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-120vh) translateX(50px) rotate(720deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* Header espectacular */
+        header {
+            position: relative;
+            text-align: center;
+            padding: 100px 20px 120px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+            z-index: 2;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            animation: fadeInScale 1.2s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+            animation: glow 3s ease-in-out infinite alternate;
+            background: linear-gradient(45deg, #fff, #ffeaa7, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            font-weight: 300;
+            opacity: 0.95;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-style: italic;
+            opacity: 0.9;
+            animation: fadeIn 1.8s ease-out 1s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            max-width: 1300px;
+            margin: -80px auto 0;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        /* Navegación de secciones */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid white;
+        }
+
+        .nav-dot:hover, .nav-dot.active {
+            background: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Tarjetas mejoradas */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+            transform: translateY(80px);
+            opacity: 0;
+            animation: slideUp 1s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.35);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(180deg, #3b82f6 0%, #1e3a8a 100%);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+        .card:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h2 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            animation: pulse 2.5s infinite;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+        }
+
+        .icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: ripple 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .card p {
+            line-height: 2;
+            color: #2d3748;
+            font-size: 1.15em;
+            text-align: justify;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sección de habilidades mejorada */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .skill-item:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-15px) scale(1.08);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .skill-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-item p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sección personal mejorada */
+        .personal-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar-container {
+            position: relative;
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.4);
+            animation: float-avatar 6s ease-in-out infinite;
+            position: relative;
+            border: 5px solid white;
+        }
+
+        .avatar::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes float-avatar {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .personal-text {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        /* Footer mejorado */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            font-size: 1.2em;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Botón de scroll hacia arriba */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.3em; }
+            .tagline { font-size: 1em; }
+            .card { padding: 30px; }
+            .card h2 { font-size: 1.8em; }
+            .personal-section { flex-direction: column; text-align: center; }
+            .avatar { width: 200px; height: 200px; font-size: 80px; }
+            .nav-dots { display: none; }
+            .skills { grid-template-columns: 1fr; }
+        }
+
+        /* Animación de entrada de texto */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fondo -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navegación de puntos -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-section="0"></div>
+        <div class="nav-dot" data-section="1"></div>
+        <div class="nav-dot" data-section="2"></div>
+        <div class="nav-dot" data-section="3"></div>
+        <div class="nav-dot" data-section="4"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>Ariel Alonso Gongora Tziu</h1>
+            <p class="subtitle">Ingeniero en Sistemas Computacionales</p>
+            <p class="tagline">🚀 "Innovación · Creatividad · Excelencia" 🚀</p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        
+        <!-- Carta 1: Introducción y Fortalezas -->
+        <div class="card" data-section="1">
+            <h2>
+                <div class="icon-wrapper">
+                    <span class="icon">🚀</span>
+                </div>
+                Mi Pasión por Aprender
+            </h2>
+            <p>
+                Desde que inicié mi carrera en <span class="highlight">Ingeniería en Sistemas Computacionales</span>, he descubierto que una de mis mayores fortalezas es la <strong>curiosidad</strong> y el <strong>deseo constante de aprender</strong>. Me gusta explorar los temas en profundidad y no conformarme con respuestas superficiales; disfruto investigando, cuestionando y conectando ideas para comprender cómo funcionan los sistemas y cómo se pueden mejorar mediante la creatividad y el diseño.
+            </p>
+        </div>
+
+        <!-- Carta 2: Cualidades Personales -->
+        <div class="card" data-section="2">
+            <h2>
+                <div class="icon-wrapper">
+                    <span class="icon">💎</span>
+                </div>
+                Mis Cualidades
+            </h2>
+            <p>
+                Soy una persona <span class="highlight">reflexiva, organizada y disciplinada</span>, lo que me permite cumplir con mis responsabilidades académicas y contribuir de manera efectiva en proyectos individuales y grupales. Me esfuerzo por mantener un equilibrio entre la calidad y la puntualidad, asegurándome de que cada tarea que realizo esté bien fundamentada y cumpla con los estándares que me propongo.
+            </p>
+            <p style="margin-top: 20px;">
+                Además, disfruto de la <span class="highlight">creación y el diseño</span>, ya sea desarrollando software, interfaces o proyectos tecnológicos, buscando siempre que sean innovadores, funcionales y estéticamente atractivos.
+            </p>
+        </div>
+
+        <!-- Carta 3: Habilidades -->
+        <div class="card" data-section="3">
+            <h2>
+                <div class="icon-wrapper">
+                    <span class="icon">🎯</span>
+                </div>
+                Habilidades Clave
+            </h2>
+            <div class="skills">
+                <div class="skill-item">
+                    <h3>🧠 Pensamiento Crítico</h3>
+                    <p>Análisis profundo y soluciones eficientes a problemas complejos</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🔍 Atención al Detalle</h3>
+                    <p>Compromiso inquebrantable con la excelencia</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🤝 Colaboración</h3>
+                    <p>Comunicación clara y trabajo en equipo efectivo</p>
+                </div>
+                <div class="skill-item">
+                    <h3>🎨 Creatividad</h3>
+                    <p>Innovación constante en diseño y desarrollo</p>
+                </div>
+                <div class="skill-item">
+                    <h3>⚡ Adaptabilidad</h3>
+                    <p>Flexibilidad ante nuevos desafíos</p>
+                </div>
+                <div class="skill-item">
+                    <h3>📚 Aprendizaje Continuo</h3>
+                    <p>Pasión insaciable por crecer y mejorar</p>
+                </div>
+            </div>
+            <p style="margin-top: 35px;">
+                Mi <span class="highlight">pensamiento crítico</span> y mi <span class="highlight">atención al detalle</span> me han permitido enfrentar desafíos de manera analítica, encontrando soluciones eficientes a problemas complejos. Incluso en tareas que podrían parecer simples, me esfuerzo por revisar cada elemento y asegurarme de que todo esté correcto, reflejando mi compromiso con la excelencia.
+            </p>
+            <p style="margin-top: 20px;">
+                Valoro la <span class="highlight">colaboración y la comunicación clara</span>, ya que considero que aprender de los demás y compartir conocimientos fortalece los proyectos y enriquece la experiencia académica. Además, me adapto con facilidad a situaciones nuevas, combinando creatividad y disciplina para superar obstáculos y aprovechar oportunidades de aprendizaje.
+            </p>
+        </div>
+
+        <!-- Carta 4: Perfil Personal -->
+        <div class="card" data-section="4">
+            <h2>
+                <div class="icon-wrapper">
+                    <span class="icon">👤</span>
+                </div>
+                Sobre Mí
+            </h2>
+            <div class="personal-section">
+                <div class="avatar-container">
+                    <div class="avatar">👨‍💻</div>
+                </div>
+                <div class="personal-text">
+                    <p>
+                        En el ámbito personal, me describo como alguien con <strong>tez morena y cabello ondulado</strong>, una persona que se identifica con la <span class="highlight">perseverancia y la curiosidad intelectual</span>, y que disfruta crear, diseñar y experimentar con nuevas ideas dentro del campo de la ingeniería.
+                    </p>
+                    <p style="margin-top: 25px;">
+                        Mi perfil combina <span class="highlight">pasión por el aprendizaje, disciplina, pensamiento crítico, creatividad y habilidades de colaboración</span>, cualidades que me permiten crecer constantemente y contribuir de manera significativa a mis proyectos y a mi entorno académico.
+                    </p>
+                    <p style="margin-top: 25px; font-size: 1.2em; line-height: 1.8;">
+                        <strong>En resumen:</strong> Soy un estudiante <span class="highlight">comprometido, creativo y detallista</span>, que busca siempre mejorar, aprender y dejar un <span class="highlight">impacto positivo</span> a través de mi trabajo y mis ideas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p style="font-size: 1.4em; font-weight: 600;">✨ Creado con Pasión y Dedicación ✨</p>
+            <p style="margin-top: 20px; opacity: 0.9;">Ariel Alonso Gongora Tziu</p>
+            <p style="margin-top: 10px; opacity: 0.85; font-size: 0.95em;">Ingeniero en Sistemas Computacionales</p>
+            <div class="social-links">
+                <div class="social-link" title="LinkedIn">💼</div>
+                <div class="social-link" title="GitHub">💻</div>
+                <div class="social-link" title="Email">📧</div>
+                <div class="social-link" title="Portfolio">🌐</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón scroll to top -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Crear partículas animadas más elaboradas
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 60; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 15 + 5;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Navegación con puntos
+        const navDots = document.querySelectorAll('.nav-dot');
+        const cards = document.querySelectorAll('.card');
+
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const section = dot.getAttribute('data-section');
+                if (section === '0') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    cards[section - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+
+        // Actualizar navegación al hacer scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            
+            navDots.forEach(dot => dot.classList.remove('active'));
+            
+            if (scrollPosition < 300) {
+                navDots[0].classList.add('active');
+            } else {
+                cards.forEach((card, index) => {
+                    const rect = card.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        navDots[index + 1].classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Animación de entrada para las tarjetas
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.15 });
+
+        cards.forEach(card => observer.observe(card));
+
+        // Efecto parallax suave en las tarjetas al mover el mouse
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth - 0.5;
+            mouseY = e.clientY / window.innerHeight - 0.5;
+        });
+
+        function animateCards() {
+            cards.forEach((card, index) => {
+                const speed = (index + 1) * 2;
+                const xMove = mouseX * speed;
+                const yMove = mouseY * speed;
+                card.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+            requestAnimationFrame(animateCards);
+        }
+        animateCards();
+
+        // Botón scroll to top
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Efecto de hover en las skill cards
+        const skillItems = document.querySelectorAll('.skill-item');
+        skillItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.08)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animación de las redes sociales
+        const socialLinks = document.querySelectorAll('.social-link');
+        socialLinks.forEach((link, index) => {
+            link.style.animation = `fadeIn 0.5s ease-out ${0.2 * index}s both`;
+        });
+
+        // Añadir efecto de ondulación al hacer clic
+        document.querySelectorAll('.skill-item, .social-link').forEach(element => {
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple-effect');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body>
+</html>
